@@ -1,0 +1,100 @@
+{
+  "version": "1.3.5",
+  "name": "remix-ide",
+  "description": "Remix - Ethereum IDE",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder",
+    "release": "yarn run dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ethereum/remix-desktop.git"
+  },
+  "author": {
+    "name": "Remix Team",
+    "email": "remix@ethereum.org"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ethereum/remix-desktop/issues"
+  },
+  "homepage": "https://github.com/ethereum/remix-desktop#readme",
+  "devDependencies": {
+    "electron": "20.0.3",
+    "electron-builder": "23.3.3",
+    "typescript": "^4.7.4"
+  },
+  "build": {
+    "productName": "Remix IDE",
+    "appId": "org.ethereum.remix-ide",
+    "asar": true,
+    "files": [
+      "main.js",
+      "selectFolder.js",
+      "setFolder.js",
+      "applicationMenu.js",
+      "config.js",
+      "build/icon.png",
+      "*.asar",
+      "*.zip"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        {
+          "target": "zip",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64",
+            "universal"
+          ]
+        }
+      ],
+      "darkModeSupport": true
+    },
+    "dmg": {
+      "writeUpdateInfo": false
+    },
+    "nsis": {
+      "createDesktopShortcut": "always",
+      "allowToChangeInstallationDirectory": true,
+      "oneClick": false,
+      "shortcutName": "Remix IDE",
+      "differentialPackage": false
+    },
+    "win": {
+      "target": [
+        "zip",
+        "nsis"
+      ]
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "snap",
+        "AppImage"
+      ],
+      "category": "WebBrowser"
+    },
+    "directories": {
+      "output": "release"
+    }
+  },
+  "dependencies": {
+    "@remix-project/remixd": "^0.6.6",
+    "electron-app-manager": "EthereumRemix/electron-app-manager#remix-dep",
+    "fs-extra": "^3.0.1",
+    "latest-version": "^5.1.0",
+    "node-fetch": "^2.6.1",
+    "semver": "^7.3.5"
+  }
+}
